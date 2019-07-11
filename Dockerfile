@@ -1,12 +1,12 @@
 FROM node:latest
-MAINTAINER Ivan Vanderbyl <ivan@flood.io>
 
-# Based on instructions at https://github.com/segmentio/nightmare/issues/224
+EXPOSE 80/tcp
 
-RUN apt-get update
+ENV PORT=80
+ENV LISTENHOST="0.0.0.0"
 
 # Installing the packages needed to run Nightmare
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   xvfb \
   x11-xkb-utils \
   xfonts-100dpi \
@@ -31,22 +31,13 @@ RUN apt-get install -y \
 
 ENV DEBUG="nightmare"
 
-RUN npm install -g yarn
-RUN npm install nightmare
-
-RUN mkdir -p /workspace
 WORKDIR /workspace
-RUN mkdir ./tmp
 
-ADD package.json .
-ADD yarn.lock .
-
-RUN yarn install
-
-ADD . .
+ADD ./AllegroRSS .
+RUN npm install
 
 COPY entrypoint.sh /entrypoint
 RUN chmod +x /entrypoint
-ENTRYPOINT ["/entrypoint", "node", "--harmony-async-await"]
+ENTRYPOINT ["/entrypoint", "node"]
 
 CMD ["index.js"]

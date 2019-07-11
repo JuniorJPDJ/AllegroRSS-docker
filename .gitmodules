@@ -1,0 +1,3 @@
+[submodule "AllegroRSS"]
+	path = AllegroRSS
+	url = https://github.com/MK-PL/AllegroRSS
