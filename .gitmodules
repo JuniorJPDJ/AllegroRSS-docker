@@ -1,3 +1,4 @@
 [submodule "AllegroRSS"]
 	path = AllegroRSS
-	url = https://github.com/MK-PL/AllegroRSS
+	url = https://github.com/JuniorJPDJ/AllegroRSS
+	branch = patch-1
