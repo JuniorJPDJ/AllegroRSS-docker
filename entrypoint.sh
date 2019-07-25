@@ -2,7 +2,7 @@
 set -e
 
 # Start Xvfb
-rm /tmp/.X99-lock
+rm -f /tmp/.X99-lock
 Xvfb -ac -screen scrn 1024x768x24 :99.0 &
 export DISPLAY=:99.0
 
